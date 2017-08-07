@@ -1,0 +1,43 @@
+
+about:
+  name: Casey Brooks
+  description: My Personal Website
+
+colors:
+  primary: '#ffa033'
+  secondary: '#000000'
+
+github:
+  username: 'cjbrooks12'
+
+posts:
+  permalink: ':year/:monthName/:title'
+  categories:
+    - 'category1'
+    - 'category2'
+
+wiki:
+  sections:
+    - 'section1'
+    - 'section2'
+
+menu:
+  mainMenu:
+    - type: 'link'
+      title: 'Home'
+      url: '/'
+    - type: 'link'
+      title: 'About'
+      url: 'pages/about'
+    - type: 'link'
+      title: 'Contact'
+      url: 'pages/contact'
+    - type: 'latestPosts'
+      count: 5
+      category: 'category1'
+    - type: 'latestPosts'
+      count: 5
+      category: 'category2'
+    - type: 'postCategories'
+    - type: 'postTags'
+    - type: 'wikiSections'

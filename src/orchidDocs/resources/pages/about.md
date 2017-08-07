@@ -1,0 +1,1 @@
+A sample About page. Tell the world who you are and what you do, then link to this page from a Menu.
