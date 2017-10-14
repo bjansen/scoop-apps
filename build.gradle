@@ -25,7 +25,7 @@ orchid {
     if (project.hasProperty('env')) {
         switch (project.property('env')) {
             case 'prod':
-                baseUrl = 'https://www.caseyjbrooks.com'
+                baseUrl = System.getenv('URL')
                 break
             case 'staging':
                 baseUrl = 'http://localhost:8080'

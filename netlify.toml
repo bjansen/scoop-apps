@@ -6,4 +6,4 @@
 [build]
   base    = ""
   publish = "build/docs/javadoc"
-  command = "./gradlew orchidBuild"
+  command = "./gradlew orchidBuild -Penv=prod"
