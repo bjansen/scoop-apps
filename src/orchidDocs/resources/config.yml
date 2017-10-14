@@ -1,43 +1,67 @@
-
-about:
-  name: Casey Brooks
-  description: My Personal Website
-
-colors:
-  primary: '#ffa033'
-  secondary: '#000000'
-
-github:
-  username: 'cjbrooks12'
-
-posts:
-  permalink: ':year/:monthName/:title'
-  categories:
-    - 'category1'
-    - 'category2'
-
-wiki:
-  sections:
-    - 'section1'
-    - 'section2'
-
-menu:
-  mainMenu:
+FutureImperfect:
+  about:
+    siteName: 'Orchid Starter'
+    tagline: 'Basic starter repo to get going with Orchid quickly'
+    blurb: 'This is a short blurb you can set below this index layouts sidebar.'
+    avatar: '/assets/images/logo.jpg'
+  social:
+    facebook: 'http://example.com/'
+    twitter: 'http://example.com/'
+    instagram: 'http://example.com/'
+    rss: 'http://example.com/'
+    email: 'http://example.com/'
+  topMenu:
     - type: 'link'
       title: 'Home'
       url: '/'
-    - type: 'link'
-      title: 'About'
-      url: 'pages/about'
-    - type: 'link'
-      title: 'Contact'
-      url: 'pages/contact'
-    - type: 'latestPosts'
-      count: 5
-      category: 'category1'
-    - type: 'latestPosts'
-      count: 5
-      category: 'category2'
     - type: 'postCategories'
-    - type: 'postTags'
-    - type: 'wikiSections'
+      category: 'category1'
+      title: 'blog'
+    - type: 'page'
+      page: 'Example Page'
+  drawerMenu:
+    - type: 'link'
+      title: 'Home'
+      url: '/'
+    - type: 'postCategories'
+      category: 'category1'
+      title: 'blog'
+    - type: 'page'
+      page: 'Example Page'
+  sidebar:
+    - type: recentPosts
+      limit: 3
+      category: category1
+      templates:
+          - 'includes/postPreview_mini.twig'
+    - type: recentPosts
+      limit: 5
+      category: category2
+      templates:
+          - 'includes/postPreview_list.twig'
+
+assets:
+  sourceDirs:
+    - 'assets/images'
+
+pages:
+  layout: single
+
+posts:
+  layout: single
+  permalink: ':category/:year/:month/:slug'
+  disqusShortname: 'exampleShortname'
+  categories:
+    - 'category1'
+    - 'category2'
+  authors:
+    - name: 'Author One'
+      avatar: '/assets/images/avatar.jpg'
+
+generators:
+  disabled:
+    - 'WikiGenerator'
+    - 'IndexGenerator'
+    - 'JavadocGenerator'
+    - 'ChangelogGenerator'
+    - 'KssGenerator'
