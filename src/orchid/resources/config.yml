@@ -1,15 +1,14 @@
-FutureImperfect:
+theme:
   about:
     siteName: 'Orchid Starter'
     tagline: 'Basic starter repo to get going with Orchid quickly'
     blurb: 'This is a short blurb you can set below this index layouts sidebar.'
-    avatar: '/assets/images/logo.jpg'
+    avatar: '/assets/media/logo.jpg'
   social:
-    facebook: 'http://example.com/'
-    twitter: 'http://example.com/'
-    instagram: 'http://example.com/'
-    rss: 'http://example.com/'
-    email: 'http://example.com/'
+    facebook: 'facebookUsername'
+    twitter: 'twitterHandle'
+    instagram: 'instagramHandle'
+    github: 'githubUsername'
   topMenu:
     - type: 'link'
       title: 'Home'
@@ -32,25 +31,26 @@ FutureImperfect:
     - type: recentPosts
       limit: 3
       category: category1
+      noWrapper: true
       templates:
-          - 'includes/postPreview_mini.twig'
+          - 'includes/postPreview_mini'
     - type: recentPosts
       limit: 5
       category: category2
+      noWrapper: true
       templates:
-          - 'includes/postPreview_list.twig'
+          - 'includes/postPreview_list'
+  extraCss:
+    - 'assets/css/extraCss.scss'
+  extraJs:
+    - 'assets/js/extraJs.js'
 
 assets:
   sourceDirs:
-    - 'assets/images'
-
-pages:
-  layout: single
+    - 'assets'
 
 posts:
-  layout: single
-  permalink: ':category/:year/:month/:slug'
-  disqusShortname: 'exampleShortname'
+  permalink: ':category/:year/:monthName/:slug'
   categories:
     - 'category1'
     - 'category2'
@@ -61,7 +61,15 @@ posts:
 generators:
   disabled:
     - 'WikiGenerator'
-    - 'IndexGenerator'
     - 'JavadocGenerator'
     - 'ChangelogGenerator'
     - 'KssGenerator'
+
+staticPages:
+  layout: single
+
+postPages:
+  layout: single
+
+postArchivePages:
+  layout: frontPage

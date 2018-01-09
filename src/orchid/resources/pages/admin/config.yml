@@ -1,0 +1,47 @@
+---
+usePrettyUrl: false
+renderMode: raw
+---
+
+backend:
+  name: github
+  repo: 'Set Github repo as user/repo here'
+  branch: master
+
+publish_mode: editorial_workflow
+media_folder: "src/orchid/resources/assets/media"
+public_folder: "assets/media"
+
+collections:
+  - name: "blogCategory1"
+    label: "Blog - Category 1"
+    folder: "src/orchid/resources/posts/category1"
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    create: true
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Featured Image", name: "featuredImage", widget: "image"}
+      - {label: "Body", name: "body", widget: "markdown"}
+    meta:
+      - {label: "SEO Description", name: "description", widget: "text"}
+  - name: "blogCategory2"
+    label: "Blog - Category 2"
+    folder: "src/orchid/resources/posts/category2"
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    create: true
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Featured Image", name: "featuredImage", widget: "image"}
+      - {label: "Body", name: "body", widget: "markdown"}
+    meta:
+      - {label: "SEO Description", name: "description", widget: "text"}
+
+  - name: "pages"
+    label: "Pages"
+    folder: "src/orchid/resources/pages"
+    create: true
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Body", name: "body", widget: "markdown"}
+    meta:
+      - {label: "SEO Description", name: "description", widget: "text"}

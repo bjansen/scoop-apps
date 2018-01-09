@@ -1,19 +1,29 @@
 // Buildscript dependencies and plugins
 //----------------------------------------------------------------------------------------------------------------------
-plugins {
-    id "com.eden.orchidPlugin" version 'v0.3.0'
+buildscript {
+    ext.orchidVersion = '0.7.3'
+    ext.orchidPluginVersion = 'v0.4.0'
+    repositories {
+        jcenter()
+        maven { url "https://plugins.gradle.org/m2/" }
+    }
+    dependencies {
+        classpath "gradle.plugin.com.eden.orchidPlugin:buildSrc:${orchidPluginVersion}"
+    }
 }
+apply plugin: "com.eden.orchidPlugin"
 
 // Orchid setup
 //----------------------------------------------------------------------------------------------------------------------
 repositories {
     jcenter()
+    maven { url 'https://dl.bintray.com/javaeden/Orchid/' }
     maven { url 'https://jitpack.io' }
 }
 
 dependencies {
-    compile "io.github.javaeden.orchid:OrchidCore:v0.3.8"
-    orchidDocsCompile "io.github.javaeden.orchid:OrchidAll:v0.3.8"
+    compile "io.github.javaeden.orchid:OrchidCore:${orchidVersion}"
+    orchidCompile "io.github.javaeden.orchid:OrchidAll:${orchidVersion}"
 }
 
 project.version = '1'
@@ -22,19 +32,10 @@ orchid {
     version = "${project.version}"
     theme = "FutureImperfect"
 
-    if (project.hasProperty('env')) {
-        switch (project.property('env')) {
-            case 'prod':
-                baseUrl = System.getenv('URL')
-                break
-            case 'staging':
-                baseUrl = 'http://localhost:8080'
-                break
-            case 'dev':
-                baseUrl = 'http://localhost:8080'
-                break
-        }
-    } else {
+    if (project.hasProperty('env') && project.property('env') == 'prod') {
+        baseUrl = System.getenv('URL')
+    }
+    else {
         baseUrl = 'http://localhost:8080'
     }
 }
