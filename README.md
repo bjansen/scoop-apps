@@ -15,3 +15,8 @@ repo includes the [Netlify CMS](https://www.netlifycms.org/), so you will be up 
 possible. You will need to set the Github user/repo in `src/orchid/resources/pages/admin/config.yml`. 
 
 [![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/JavaEden/OrchidStarter)
+
+### Example Orchid Sites
+
+* [Official Orchid documentation](https://javaeden.github.io/Orchid/latest/OrchidCore/)
+* [caseyjbrooks.com](https://www.caseyjbrooks.com/)
