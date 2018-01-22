@@ -1,9 +1,11 @@
-theme:
+site:
   about:
     siteName: 'Orchid Starter'
     tagline: 'Basic starter repo to get going with Orchid quickly'
     blurb: 'This is a short blurb you can set below this index layouts sidebar.'
     avatar: '/assets/media/logo.jpg'
+
+theme:
   social:
     facebook: 'facebookUsername'
     twitter: 'twitterHandle'
@@ -73,3 +75,9 @@ postPages:
 
 postArchivePages:
   layout: frontPage
+
+netlifyCms:
+  backend:
+    name: github
+    repo: 'Set Github repo as user/repo here'
+    branch: master
