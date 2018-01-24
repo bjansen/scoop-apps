@@ -20,4 +20,6 @@ is automatically generated based on your current Orchid plugins and configuratio
 ### Example Orchid Sites
 
 * [Official Orchid documentation](https://javaeden.github.io/Orchid/latest/OrchidCore/)
+* [Clog documentation](https://javaeden.github.io/Clog/)
+* [Krow documentation](https://javaeden.github.io/Krow/)
 * [caseyjbrooks.com](https://www.caseyjbrooks.com/)
