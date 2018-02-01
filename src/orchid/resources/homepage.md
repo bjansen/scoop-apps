@@ -8,7 +8,7 @@ components:
     noWrapper: true
     templates:
       - 'includes/postPreview_large'
-next: 'category1/archive'
+next: 'categories/category1'
 ---
 
 

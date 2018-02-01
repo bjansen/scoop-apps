@@ -15,20 +15,22 @@ theme:
     - type: 'link'
       title: 'Home'
       url: '/'
-    - type: 'postCategories'
-      category: 'category1'
-      title: 'blog'
-    - type: 'page'
-      page: 'Example Page'
+    - type: 'taxonomy'
+      taxonomyType: 'categories'
+      includeTerms: true
+      termsAtRoot: true
   drawerMenu:
     - type: 'link'
       title: 'Home'
       url: '/'
-    - type: 'postCategories'
-      category: 'category1'
-      title: 'blog'
+    - type: 'taxonomy'
+      taxonomyType: 'categories'
+      includeTerms: true
+      termsAtRoot: true
     - type: 'page'
-      page: 'Example Page'
+      page: 'Examples - Social Media'
+    - type: 'page'
+      page: 'Examples - Programming'
   sidebar:
     - type: recentPosts
       limit: 3
@@ -44,6 +46,7 @@ theme:
           - 'includes/postPreview_list'
   extraCss:
     - 'assets/css/extraCss.scss'
+    - 'assets/css/pygments.scss'
   extraJs:
     - 'assets/js/extraJs.js'
 
@@ -59,25 +62,47 @@ posts:
   authors:
     - name: 'Author One'
       avatar: '/assets/images/avatar.jpg'
+      email: 'cjbrooks12@gmail.com'
+    - name: 'Author Two'
+      avatar: '/assets/images/avatar.jpg'
+      email: 'cjbrooks12@gmail.com'
 
 generators:
   disabled:
-    - 'WikiGenerator'
-    - 'JavadocGenerator'
-    - 'ChangelogGenerator'
-    - 'KssGenerator'
+    - 'wiki'
+    - 'javadoc'
+    - 'changelog'
+    - 'styleguide'
 
 staticPages:
   layout: single
 
 postPages:
   layout: single
-
-postArchivePages:
-  layout: frontPage
+  components:
+    - type: pageContent
+    - type: taxonomy
+      taxonomyType: tags
+    - type: taxonomy
+      taxonomyType: categories
 
 netlifyCms:
   backend:
     name: github
-    repo: 'Set Github repo as user/repo here'
+    repo: 'JavaEden/OrchidStarter'
     branch: master
+
+taxonomies:
+  taxonomies:
+    - categories:
+        single: false
+        singleKey: category
+        orderBy:
+          - year
+          - month
+          - title
+    - tags:
+        single: false
+        orderBy:
+          - entryCount
+

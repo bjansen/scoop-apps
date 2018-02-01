@@ -1,9 +1,9 @@
 ---
 title: Example Post Category 1
 author: Author One
-featuredImage: assets/media/pic01.jpg
+featuredImage: assets/media/pic03.jpg
 tags:
-    - one
+    - three
 ---
 
 Example Post in Category 1
