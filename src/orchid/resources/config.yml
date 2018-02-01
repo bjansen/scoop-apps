@@ -19,6 +19,8 @@ theme:
       taxonomyType: 'categories'
       includeTerms: true
       termsAtRoot: true
+    - type: 'wikiSections'
+      atRoot: true
   drawerMenu:
     - type: 'link'
       title: 'Home'
@@ -31,6 +33,8 @@ theme:
       page: 'Examples - Social Media'
     - type: 'page'
       page: 'Examples - Programming'
+    - type: 'page'
+      page: 'Examples - Custom'
   sidebar:
     - type: recentPosts
       limit: 3
@@ -69,7 +73,6 @@ posts:
 
 generators:
   disabled:
-    - 'wiki'
     - 'javadoc'
     - 'changelog'
     - 'styleguide'

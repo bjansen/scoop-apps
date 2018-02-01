@@ -1,4 +1,4 @@
 
-- [Entry One](entries/one.md)
-- [Entry Two](entries/two.md)
-- [Entry Three](entries/three.md)
+- [Asciidoc Sample](asciidoctor.ad)
+- [Markdown Sample](markdown.md)
+- [Pebble Sample](pebble.peb)
