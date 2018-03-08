@@ -1,0 +1,12 @@
+taxonomies:
+  - categories:
+      single: false
+      singleKey: category
+      orderBy:
+        - year
+        - month
+        - title
+  - tags:
+      single: false
+      orderBy:
+        - entryCount

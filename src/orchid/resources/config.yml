@@ -1,8 +1,8 @@
 site:
   about:
     siteName: 'Orchid Starter'
-    tagline: 'Basic starter repo to get going with Orchid quickly'
-    blurb: 'This is a short blurb you can set below this index layouts sidebar.'
+    subtitle: 'Basic starter repo to get going with Orchid quickly'
+    siteDescription: 'This is a short blurb you can set below this index layouts sidebar.'
     avatar: '/assets/media/logo.jpg'
 
 theme:
@@ -11,8 +11,12 @@ theme:
     twitter: 'twitterHandle'
     instagram: 'instagramHandle'
     github: 'githubUsername'
-  topMenu:
-    - type: 'link'
+    other:
+      - label: 'linkedin'
+        link: 'https://www.example.com'
+        icon: 'fa-tag'
+  menu:
+    - type: 'page'
       title: 'Home'
       url: '/'
     - type: 'taxonomy'
@@ -21,91 +25,34 @@ theme:
       termsAtRoot: true
     - type: 'wikiSections'
       atRoot: true
-  drawerMenu:
-    - type: 'link'
-      title: 'Home'
-      url: '/'
-    - type: 'taxonomy'
-      taxonomyType: 'categories'
-      includeTerms: true
-      termsAtRoot: true
     - type: 'page'
-      page: 'Examples - Social Media'
-    - type: 'page'
-      page: 'Examples - Programming'
-    - type: 'page'
-      page: 'Examples - Custom'
+      title: 'About'
+      itemId: 'Author One'
   sidebar:
     - type: recentPosts
       limit: 3
-      category: category1
+      category: gallery
       noWrapper: true
       templates:
-          - 'includes/postPreview_mini'
+        - 'includes/postPreview_mini'
     - type: recentPosts
       limit: 5
-      category: category2
+      category: personal
       noWrapper: true
       templates:
-          - 'includes/postPreview_list'
+        - 'includes/postPreview_list'
+    - type: form
+      form: prayer
+      noWrapper: true
   extraCss:
     - 'assets/css/extraCss.scss'
     - 'assets/css/pygments.scss'
   extraJs:
     - 'assets/js/extraJs.js'
 
-assets:
-  sourceDirs:
-    - 'assets'
-
-posts:
-  permalink: ':category/:year/:monthName/:slug'
-  categories:
-    - 'category1'
-    - 'category2'
-  authors:
-    - name: 'Author One'
-      avatar: '/assets/images/avatar.jpg'
-      email: 'cjbrooks12@gmail.com'
-    - name: 'Author Two'
-      avatar: '/assets/images/avatar.jpg'
-      email: 'cjbrooks12@gmail.com'
-
-generators:
-  disabled:
-    - 'javadoc'
-    - 'changelog'
-    - 'styleguide'
-
-staticPages:
-  layout: single
-
-postPages:
-  layout: single
-  components:
-    - type: pageContent
-    - type: taxonomy
-      taxonomyType: tags
-    - type: taxonomy
-      taxonomyType: categories
-
-netlifyCms:
-  backend:
-    name: github
-    repo: 'JavaEden/OrchidStarter'
-    branch: master
-
-taxonomies:
-  taxonomies:
-    - categories:
-        single: false
-        singleKey: category
-        orderBy:
-          - year
-          - month
-          - title
-    - tags:
-        single: false
-        orderBy:
-          - entryCount
-
+services:
+  generators:
+    disabled:
+      - 'javadoc'
+      - 'changelog'
+      - 'styleguide'

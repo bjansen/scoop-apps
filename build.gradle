@@ -1,14 +1,14 @@
 // Buildscript dependencies and plugins
 //----------------------------------------------------------------------------------------------------------------------
 buildscript {
-    ext.orchidVersion = '0.7.13'
-    ext.orchidPluginVersion = 'v0.4.0'
+    ext.orchid_version = '0.7.31'
+    ext.orchid_pluginVersion = 'v0.4.1'
     repositories {
         jcenter()
         maven { url "https://plugins.gradle.org/m2/" }
     }
     dependencies {
-        classpath "gradle.plugin.com.eden.orchidPlugin:buildSrc:${orchidPluginVersion}"
+        classpath "gradle.plugin.com.eden.orchidPlugin:buildSrc:${orchid_pluginVersion}"
     }
 }
 apply plugin: "com.eden.orchidPlugin"
@@ -22,8 +22,8 @@ repositories {
 }
 
 dependencies {
-    compile "io.github.javaeden.orchid:OrchidCore:${orchidVersion}"
-    orchidCompile "io.github.javaeden.orchid:OrchidAll:${orchidVersion}"
+    compile "io.github.javaeden.orchid:OrchidCore:${orchid_version}"
+    orchidCompile "io.github.javaeden.orchid:OrchidAll:${orchid_version}"
 }
 
 project.version = '1'
@@ -33,9 +33,17 @@ orchid {
     theme = "FutureImperfect"
 
     if (project.hasProperty('env') && project.property('env') == 'prod') {
-        baseUrl = System.getenv('URL')
+        environment = 'production'
+        String isPullRequest = System.getenv('PULL_REQUEST')
+        if(isPullRequest == "true") {
+            baseUrl = System.getenv('DEPLOY_URL')
+        }
+        else {
+            baseUrl = System.getenv('URL')
+        }
     }
     else {
+        environment = 'debug'
         baseUrl = 'http://localhost:8080'
     }
 }

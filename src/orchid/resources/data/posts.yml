@@ -1,0 +1,16 @@
+permalink: ':category/:year/:monthName/:slug'
+categories:
+  - 'category1'
+  - 'category2'
+authors:
+  - name: 'Author Two'
+    avatar: '/assets/images/avatar.jpg'
+    email: 'cjbrooks12@gmail.com'
+postPages:
+  layout: single
+  components:
+    - type: pageContent
+    - type: taxonomy
+      taxonomyType: tags
+    - type: taxonomy
+      taxonomyType: categories
