@@ -1,4 +1,5 @@
-backend:
-  name: github
-  repo: 'JavaEden/OrchidStarter'
-  branch: master
+config:
+  backend:
+    name: github
+    repo: 'user/repo'
+    branch: master
