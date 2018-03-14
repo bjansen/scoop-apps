@@ -1,7 +1,7 @@
 // Buildscript dependencies and plugins
 //----------------------------------------------------------------------------------------------------------------------
 buildscript {
-    ext.orchid_version = '0.7.32'
+    ext.orchid_version = '0.7.33'
     ext.orchid_pluginVersion = 'v0.4.1'
     repositories {
         jcenter()
