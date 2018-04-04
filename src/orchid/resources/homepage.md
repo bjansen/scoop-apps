@@ -21,6 +21,6 @@ And finally, if you like Orchid, please support it by starring it on [Github](ht
 sharing a link on Twitter: <a 
     href="https://twitter.com/share?ref_src=twsrc%5Etfw" 
     class="twitter-share-button" 
-    data-text="Check out the site I just made with Orchid, and new Static Site Generator for Java and Kotlin!" 
+    data-text="Check out the site I just made with @OrchidSSG, and new Static Site Generator for Java and Kotlin!" 
     data-url="{{site.baseUrl}}" data-show-count="false">Tweet</a>
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
