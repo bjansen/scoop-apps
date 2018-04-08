@@ -1,13 +1,13 @@
 // Buildscript dependencies and plugins
 //----------------------------------------------------------------------------------------------------------------------
 buildscript {
-    ext.orchid_version = '0.8.1'
+    ext.orchid_version = '0.8.2'
     repositories {
         jcenter()
         maven { url "https://plugins.gradle.org/m2/" }
     }
     dependencies {
-        classpath "gradle.plugin.buildSrc:orchidPlugin:${orchid_version}"
+        classpath "gradle.plugin.com.eden:orchidPlugin:${orchid_version}"
     }
 }
 apply plugin: "com.eden.orchidPlugin"
