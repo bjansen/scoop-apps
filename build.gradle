@@ -1,7 +1,7 @@
 // Buildscript dependencies and plugins
 //----------------------------------------------------------------------------------------------------------------------
 plugins {
-    id "com.eden.orchidPlugin" version "0.8.3"
+    id "com.eden.orchidPlugin" version "0.8.10"
 }
 
 // Orchid setup
@@ -13,7 +13,7 @@ repositories {
 }
 
 dependencies {
-    def orchid_version = '0.8.3'
+    def orchid_version = '0.8.10'
     compile "io.github.javaeden.orchid:OrchidCore:${orchid_version}"
     orchidCompile "io.github.javaeden.orchid:OrchidAll:${orchid_version}"
 }
