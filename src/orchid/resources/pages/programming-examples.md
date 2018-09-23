@@ -83,5 +83,4 @@ title: Examples - Programming
 
 {% gist user="cjbrooks12" id="83a11f066388c9fe905ee1bab47ecca8" %}
 
-
 ***

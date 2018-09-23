@@ -19,31 +19,29 @@ theme:
     - type: 'page'
       title: 'Home'
       url: '/'
+    - type: "wikiSections"
     - type: 'taxonomy'
       taxonomyType: 'categories'
       includeTerms: true
       termsAtRoot: true
-    - type: 'wikiSections'
-      atRoot: true
     - type: 'page'
       title: 'About'
       itemId: 'Author One'
+    - type: "pages"
+      atRoot: true
   sidebar:
     - type: recentPosts
       limit: 3
       category: gallery
       noWrapper: true
-      templates:
+      template:
         - 'includes/postPreview_mini'
     - type: recentPosts
       limit: 5
       category: personal
       noWrapper: true
-      templates:
+      template:
         - 'includes/postPreview_list'
-    - type: form
-      form: prayer
-      noWrapper: true
   extraCss:
     - 'assets/css/extraCss.scss'
     - 'assets/css/pygments.scss'
@@ -52,7 +50,5 @@ theme:
 
 services:
   generators:
-    disabled:
-      - 'javadoc'
-      - 'changelog'
-      - 'styleguide'
+    externalIndices:
+      - 'https://orchid.netlify.com/meta/all.index.json'

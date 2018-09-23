@@ -2,20 +2,21 @@
 layout: index
 components:
   - type: pageContent
+  - type: readme
   - type: recentPosts
     limit: 4
     category: ':any'
     noWrapper: true
-    templates:
+    template:
       - 'includes/postPreview_large'
 next: 'category1'
-docsBaseUrl: 'https://orchid.netlify.com/OrchidCore'
 ---
 
 Thanks for trying out Orchid! Feel free to take a look around, then head over to the 
-[User Manual]({{docsBaseUrl}}/wiki/userManual) to learn more about using Orchid to make your site
-truly unique. While you're there, check out all our many great [plugins]({{docsBaseUrl}}/group/plugins) and browse our 
-beautiful [themes]({{docsBaseUrl}}/group/themes) to see if there's one that catches your eye.
+{{ anchor(title='User Manual', collectionId='external', itemId='user-manual') }} to learn more about using Orchid to make 
+your site truly unique. While you're there, check out all our many great 
+{{ anchor(title='plugins', collectionId='external', itemId='Plugins') }} and browse our beautiful 
+{{ anchor(title='themes', collectionId='external', itemId='Themes') }} to see if there's one that catches your eye.
 
 And finally, if you like Orchid, please support it by starring it on [Github](https://github.com/JavaEden/Orchid) and 
 sharing a link on Twitter: <a 

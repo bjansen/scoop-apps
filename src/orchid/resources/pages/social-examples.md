@@ -12,7 +12,6 @@ title: Examples - Social Media
 
 {% youtube id="IvUU8joBb1Q" %}
 
-
 ***
 
 ### Embed Tweet
@@ -24,7 +23,6 @@ title: Examples - Social Media
 ```
 
 {% twitter user="BigBendNPS" id="957346111303376897" %}
-
 
 ***
 
@@ -38,7 +36,6 @@ title: Examples - Social Media
 
 {% instagram id="BelfMe0nPdC" %}
 
-
 ***
 
 ### Embed Twitter Timeline
@@ -50,6 +47,5 @@ title: Examples - Social Media
 ```
 
 {% twitter user="TwitterDev" %}
-
 
 ***

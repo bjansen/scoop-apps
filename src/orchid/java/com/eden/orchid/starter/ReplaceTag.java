@@ -10,20 +10,23 @@ import javax.inject.Inject;
 public class ReplaceTag extends TemplateTag {
 
     @Option
-    @Getter @Setter
+    @Getter
+    @Setter
     private String find;
 
     @Option
-    @Getter @Setter
+    @Getter
+    @Setter
     private String replace;
 
     @Inject
     public ReplaceTag() {
-        super("replace", true);
+        super("replace", Type.Content, true);
     }
 
     @Override
     public String[] parameters() {
-        return new String[] {"find", "replace"};
+        return new String[]{"find", "replace"};
     }
+
 }

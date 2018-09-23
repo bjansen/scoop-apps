@@ -8,7 +8,7 @@ articles:
       content: 'Some long body content for article three.'
 ---
 
-{% for article in articles.toList() %}
+{% for article in articles %}
 <h3>{{ article.title }}</h3>
 <p>{{ article.content }}</p>
 {% else %}

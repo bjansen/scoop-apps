@@ -1,12 +1,15 @@
 permalink: ':category/:year/:monthName/:slug'
 categories:
-  - 'category1'
-  - 'category2'
+  - key: 'category1'
+    title: 'Category 1'
+  - key: 'category2'
+    title: 'Category 2'
 authors:
   - name: 'Author Two'
-    avatar: '/assets/images/avatar.jpg'
-    email: 'cjbrooks12@gmail.com'
+    avatar: 'assets/images/avatar.jpg'
+    email: 'email@domain.tld'
 postPages:
+  author: 'Author One'
   layout: single
   components:
     - type: pageContent

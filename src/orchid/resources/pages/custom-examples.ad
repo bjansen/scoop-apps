@@ -10,7 +10,6 @@ instead of YAML.
 
 ***
 
-
 {% replace "Orchid" site.about.siteName %}
 
 Orchid is a wonderful new Static Site Generator designed to be easy to use, while being highly extensible and incredibly
@@ -23,6 +22,7 @@ being rendered in one single, beautiful theme.
 
 {% endreplace %}
 
+{{ "New Orchid site"|replace("Orchid", site.about.siteName) }}
 
 ***
 

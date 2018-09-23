@@ -12,14 +12,15 @@ cd OrchidStarter
 
 Alternatively, you can click the button below to automatically clone this repo and deploy it to Netlify. This starter 
 repo includes the [Netlify CMS](https://www.netlifycms.org/), so you will be up and publishing content as soon as 
-possible. You will need to set the Github user/repo in `src/orchid/resources/data/netlifyCms.yml`, but the rest of the 
+possible. You will need to set the Github user/repo in `src/orchid/resources/config/netlifyCms.yml`, but the rest of the 
 CMS config is automatically generated based on your current Orchid plugins and configurations.  
 
 [![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/JavaEden/OrchidStarter)
 
 ### Example Orchid Sites
 
-* [Official Orchid documentation](https://javaeden.github.io/Orchid/latest/OrchidCore/)
+* [Official Orchid documentation](https://orchid.netlify.com/)
+* [Krow documentation](https://copper-leaf.github.io/krow/)
+* [Trellis documentation](https://copper-leaf.github.io/trellis/)
 * [Clog documentation](https://javaeden.github.io/Clog/)
-* [Krow documentation](https://javaeden.github.io/Krow/)
 * [caseyjbrooks.com](https://www.caseyjbrooks.com/)
