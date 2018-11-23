@@ -20,7 +20,9 @@ CMS config is automatically generated based on your current Orchid plugins and c
 ### Example Orchid Sites
 
 * [Official Orchid documentation](https://orchid.netlify.com/)
+* [caseyjbrooks.com](https://www.caseyjbrooks.com/)
+* [pebbletemplates.io](https://pebbletemplates.io/)
+* [strikt.io](https://strikt.io/)
 * [Krow documentation](https://copper-leaf.github.io/krow/)
 * [Trellis documentation](https://copper-leaf.github.io/trellis/)
 * [Clog documentation](https://javaeden.github.io/Clog/)
-* [caseyjbrooks.com](https://www.caseyjbrooks.com/)
