@@ -2,27 +2,19 @@ package com.eden.orchid.starter;
 
 import com.eden.orchid.api.compilers.TemplateFunction;
 import com.eden.orchid.api.options.annotations.Option;
-import lombok.Getter;
-import lombok.Setter;
 
 import javax.inject.Inject;
 
 public class ReplaceFunction extends TemplateFunction {
 
     @Option
-    @Getter
-    @Setter
-    private String input;
+    public String input;
 
     @Option
-    @Getter
-    @Setter
-    private String find;
+    public String find;
 
     @Option
-    @Getter
-    @Setter
-    private String replace;
+    public String replace;
 
     @Inject
     public ReplaceFunction() {

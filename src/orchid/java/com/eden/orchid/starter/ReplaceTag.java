@@ -2,22 +2,16 @@ package com.eden.orchid.starter;
 
 import com.eden.orchid.api.compilers.TemplateTag;
 import com.eden.orchid.api.options.annotations.Option;
-import lombok.Getter;
-import lombok.Setter;
 
 import javax.inject.Inject;
 
 public class ReplaceTag extends TemplateTag {
 
     @Option
-    @Getter
-    @Setter
-    private String find;
+    public String find;
 
     @Option
-    @Getter
-    @Setter
-    private String replace;
+    public String replace;
 
     @Inject
     public ReplaceTag() {
