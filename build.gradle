@@ -2,7 +2,7 @@
 //----------------------------------------------------------------------------------------------------------------------
 
 plugins {
-    id "com.eden.orchidPlugin" version "0.16.10"
+    id "com.eden.orchidPlugin" version "0.17.1"
 }
 
 // Orchid setup
@@ -12,7 +12,7 @@ repositories {
 }
 
 dependencies {
-    def orchid_version = '0.16.10'
+    def orchid_version = '0.17.1'
     compile "io.github.javaeden.orchid:OrchidCore:${orchid_version}"
     orchidCompile "io.github.javaeden.orchid:OrchidCore:${orchid_version}"
     orchidRuntime "io.github.javaeden.orchid:OrchidPosts:${orchid_version}"
