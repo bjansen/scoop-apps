@@ -6,7 +6,6 @@ plugins {
     id("com.eden.orchidPlugin") version "0.17.5"
 }
 
-
 // Orchid setup
 //----------------------------------------------------------------------------------------------------------------------
 repositories {
@@ -48,5 +47,4 @@ orchid {
         isProd -> envOrProperty("URL", required = true)
         else -> "http://localhost:8080"
     }
-
 }
