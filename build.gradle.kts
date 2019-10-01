@@ -1,9 +1,12 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 // Buildscript dependencies and plugins
 //----------------------------------------------------------------------------------------------------------------------
 
 plugins {
     // Check latest version at https://plugins.gradle.org/plugin/com.eden.orchidPlugin
     id("com.eden.orchidPlugin") version "0.17.5"
+    kotlin("jvm") version "1.3.50"
 }
 
 // Orchid setup
@@ -27,6 +30,10 @@ dependencies {
     orchidRuntime("io.github.javaeden.orchid:OrchidTaxonomies:$orchid_version")
     orchidRuntime("io.github.javaeden.orchid:OrchidFutureImperfect:$orchid_version")
     orchidRuntime("io.github.javaeden.orchid:OrchidAsciidoc:$orchid_version")
+}
+
+tasks.withType<KotlinCompile> {
+    kotlinOptions.jvmTarget = "1.8"
 }
 
 fun envOrProperty(name: String, required: Boolean = false): String? {
