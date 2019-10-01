@@ -1,9 +1,7 @@
-package com.eden.orchid.starter;
+package com.eden.orchid.starter
 
-import com.eden.orchid.api.compilers.TemplateFunction;
-import com.eden.orchid.api.options.annotations.Option;
-
-import javax.inject.Inject;
+import com.eden.orchid.api.compilers.TemplateFunction
+import com.eden.orchid.api.options.annotations.Option
 
 /**
  * This is an example Function, added as a custom component for this site only. A Function is can be used as part of an
@@ -13,38 +11,23 @@ import javax.inject.Inject;
  * To create a Function, you'll need to:
  *
  * 1) Make a subclass of `TemplateFunction`
- *   - `public class ReplaceFunction extends TemplateFunction`
- *   - `super("replace", false)`
- *   - return the order of parameters set on the tag. The first one is typically "input"
- *   - override `apply()` and return the function result
+ * - `public class ReplaceFunction extends TemplateFunction`
+ * - `super("replace", false)`
+ * - return the order of parameters set on the tag. The first one is typically "input"
+ * - override `apply()` and return the function result
  * 2) Register that subclass in your custom Module
- *   - in `OrchidStarterModule`: `addToSet(TemplateFunction.class, ReplaceFunction.class)`
+ * - in `OrchidStarterModule`: `addToSet(TemplateFunction.class, ReplaceFunction.class)`
  */
-public class ReplaceFunction extends TemplateFunction {
+data class ReplaceFunction(
+    @Option var input: String = "",
+    @Option var find: String = "",
+    @Option var replace: String = ""
+) : TemplateFunction("replace", false) {
 
-    @Option
-    public String input;
+    override fun parameters(): Array<String> = arrayOf("input", "find", "replace")
 
-    @Option
-    public String find;
-
-    @Option
-    public String replace;
-
-    @Inject
-    public ReplaceFunction() {
-        super("replace", false);
-    }
-
-    @Override
-    public String[] parameters() {
-        return new String[]{"input", "find", "replace"};
-    }
-
-    @Override
-    public Object apply() {
-        return (input != null)
-                ? input.replaceAll(find, replace)
-                : "";
+    override fun apply(): String = when {
+        input.isBlank() -> ""
+        else -> input.replace(find.toRegex(), replace)
     }
 }

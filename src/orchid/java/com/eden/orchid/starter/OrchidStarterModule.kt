@@ -1,22 +1,20 @@
-package com.eden.orchid.starter;
+package com.eden.orchid.starter
 
-import com.eden.orchid.api.compilers.TemplateFunction;
-import com.eden.orchid.api.compilers.TemplateTag;
-import com.eden.orchid.api.registration.OrchidModule;
-import com.eden.orchid.api.theme.components.OrchidComponent;
+import com.eden.orchid.api.compilers.TemplateFunction
+import com.eden.orchid.api.compilers.TemplateTag
+import com.eden.orchid.api.registration.OrchidModule
+import com.eden.orchid.api.theme.components.OrchidComponent
 
-public class OrchidStarterModule extends OrchidModule {
 
-    @Override
-    protected void configure() {
-        addToSet(TemplateTag.class,
-                ReplaceTag.class);
+@Suppress("unused")
+class OrchidStarterModule : OrchidModule() {
 
-        addToSet(TemplateFunction.class,
-                ReplaceFunction.class);
+    override fun configure() {
+        addToSet(TemplateTag::class.java, ReplaceTag::class.java)
 
-        addToSet(OrchidComponent.class,
-                ReplaceComponent.class);
+        addToSet(TemplateFunction::class.java, ReplaceFunction::class.java)
+
+        addToSet(OrchidComponent::class.java, ReplaceComponent::class.java)
     }
 
 }

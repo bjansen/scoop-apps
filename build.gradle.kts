@@ -4,6 +4,7 @@
 plugins {
     // Check latest version at https://plugins.gradle.org/plugin/com.eden.orchidPlugin
     id("com.eden.orchidPlugin") version "0.17.5"
+    kotlin("jvm") version "1.3.50"
 }
 
 // Orchid setup
