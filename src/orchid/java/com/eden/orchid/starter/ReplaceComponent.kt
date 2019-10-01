@@ -21,22 +21,27 @@ import javax.inject.Inject
  * 3) Create a matching template in `templates/components` to be rendered, whose filename matches the name passed to the superclass constructor
  * - `templates/components/replace.peb`
  */
-@Description(name = "Replace Component", value = "Load a resource by name, and replace usages of `find` with `replace` throughout its contents.")
+@Description(
+    name = "Replace Component",
+    value = "Load a resource by name, and replace usages of `find` with `replace` throughout its contents."
+)
 class ReplaceComponent
-@Inject constructor(context: OrchidContext)
-    : OrchidComponent(context, "replace", 100) {
+@Inject
+constructor(
+    context: OrchidContext
+) : OrchidComponent(context, "replace", 100) {
 
     @Option
     @Description("The path to a site resource to load")
-    var resource: String = ""
+    lateinit var resource: String
 
     @Option
     @Description("A String to find within the resource content")
-    var find: String = ""
+    lateinit var find: String
 
     @Option
     @Description("The replacement String")
-    var replace: String = ""
+    lateinit var replace: String
 
     val content: String
         get() = context.getLocalResourceEntry(resource).compileContent(null)

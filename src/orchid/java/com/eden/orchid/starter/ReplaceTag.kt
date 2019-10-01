@@ -21,7 +21,7 @@ import com.eden.orchid.api.options.annotations.Option
 data class ReplaceTag(
     @Option var find: String = "",
     @Option var replace: String = ""
-) : TemplateTag("replace", TemplateTag.Type.Content, true) {
+) : TemplateTag("replace", Type.Content, true) {
 
     override fun parameters(): Array<String> = arrayOf("find", "replace")
 
