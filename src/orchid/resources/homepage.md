@@ -2,7 +2,6 @@
 layout: index
 components:
   - type: pageContent
-  - type: readme
   - type: recentPosts
     limit: 4
     category: ':any'
@@ -18,7 +17,7 @@ your site truly unique. While you're there, check out all our many great
 {{ anchor(title='plugins', collectionId='external', itemId='Plugins') }} and browse our beautiful 
 {{ anchor(title='themes', collectionId='external', itemId='Themes') }} to see if there's one that catches your eye.
 
-And finally, if you like Orchid, please support it by starring it on [Github](https://github.com/JavaEden/Orchid) and 
+And finally, if you like Orchid, please support it by starring it on [Github](https://github.com/orchidhq/Orchid) and 
 sharing a link on Twitter: <a 
     href="https://twitter.com/share?ref_src=twsrc%5Etfw" 
     class="twitter-share-button" 

@@ -47,6 +47,9 @@ theme:
     - 'assets/css/pygments.scss'
   extraJs:
     - 'assets/js/extraJs.js'
+  legacySearch: false
+  metaComponents:
+    - type: orchidSearch
 
 services:
   generators:

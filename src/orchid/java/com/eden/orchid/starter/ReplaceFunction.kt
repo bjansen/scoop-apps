@@ -1,7 +1,10 @@
 package com.eden.orchid.starter
 
+import com.eden.orchid.api.OrchidContext
 import com.eden.orchid.api.compilers.TemplateFunction
+import com.eden.orchid.api.options.annotations.Description
 import com.eden.orchid.api.options.annotations.Option
+import com.eden.orchid.api.theme.pages.OrchidPage
 
 /**
  * This is an example Function, added as a custom component for this site only. A Function is can be used as part of an
@@ -18,15 +21,23 @@ import com.eden.orchid.api.options.annotations.Option
  * 2) Register that subclass in your custom Module
  * - in `OrchidStarterModule`: `addToSet(TemplateFunction.class, ReplaceFunction.class)`
  */
-data class ReplaceFunction(
-    @Option var input: String = "",
-    @Option var find: String = "",
-    @Option var replace: String = ""
-) : TemplateFunction("replace", false) {
+class ReplaceFunction : TemplateFunction("replace", false) {
+
+    @Option
+    @Description("The input content")
+    var input: String = ""
+
+    @Option
+    @Description("A String to find within the input content")
+    var find: String = ""
+
+    @Option
+    @Description("The replacement String")
+    var replace: String = ""
 
     override fun parameters(): Array<String> = arrayOf("input", "find", "replace")
 
-    override fun apply(): String = when {
+    override fun apply(context: OrchidContext?, page: OrchidPage?): String = when {
         input.isBlank() -> ""
         else -> input.replace(find.toRegex(), replace)
     }

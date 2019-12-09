@@ -3,7 +3,7 @@ This is a quickstart repo for Orchid to get you up and running as soon as possib
 necessary to run Orchid is a valid Java 8 JDK and git. 
 
 ```bash
-git clone https://github.com/JavaEden/OrchidStarter.git
+git clone https://github.com/orchidhq/OrchidStarter.git
 cd OrchidStarter
 ./gradlew orchidServe
 

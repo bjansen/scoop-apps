@@ -25,11 +25,7 @@ import javax.inject.Inject
     name = "Replace Component",
     value = "Load a resource by name, and replace usages of `find` with `replace` throughout its contents."
 )
-class ReplaceComponent
-@Inject
-constructor(
-    context: OrchidContext
-) : OrchidComponent(context, "replace", 100) {
+class ReplaceComponent : OrchidComponent("replace", 100) {
 
     @Option
     @Description("The path to a site resource to load")

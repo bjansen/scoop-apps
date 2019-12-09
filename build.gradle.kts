@@ -5,8 +5,8 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     // Check latest version at https://plugins.gradle.org/plugin/com.eden.orchidPlugin
-    id("com.eden.orchidPlugin") version "0.17.6"
-    kotlin("jvm") version "1.3.50"
+    id("com.eden.orchidPlugin") version "0.18.0"
+    kotlin("jvm") version "1.3.60"
 }
 
 // Orchid setup
@@ -16,7 +16,7 @@ repositories {
 }
 
 dependencies {
-    val orchid_version = "0.17.6"
+    val orchid_version = "0.18.0"
     compile("io.github.javaeden.orchid:OrchidCore:$orchid_version")
     orchidCompile("io.github.javaeden.orchid:OrchidCore:$orchid_version")
     orchidRuntime("io.github.javaeden.orchid:OrchidPosts:$orchid_version")
