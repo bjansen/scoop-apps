@@ -29,6 +29,13 @@ theme:
       itemId: 'Author One'
     - type: "pages"
       atRoot: true
+    - type: groupPages
+      collectionType: pages
+      collectionId: allPages
+      groups:
+        - 'group1'
+        - 'group2'
+        - 'group3'
   sidebar:
     - type: recentPosts
       limit: 3

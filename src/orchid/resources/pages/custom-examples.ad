@@ -1,5 +1,6 @@
 +++
 title = "Examples - Custom"
+group1 = true
 
 [[components]]
 type = 'pageContent'
@@ -35,3 +36,32 @@ being rendered in one single, beautiful theme.
 
 ***
 
+Custom Menu Item
+
+++++
+<ul>
+    {% for menuItem in theme.menu.getMenuItems(page) %}
+        {{ _menuItem(page, menuItem) }}
+    {% endfor %}
+</ul>
+
+{% macro _menuItem(page, menuItem) %}
+    {% if menuItem.hasChildren %}
+        <li>{{ menuItem.title }}
+            <ul>
+            {% for childLink in menuItem.children %}
+                {{ _menuItem(page, childLink) }}
+            {% endfor %}
+            </ul>
+        </li>
+    {% elseif menuItem.isSeparator() %}
+        <li class="separator">
+            {{ menuItem.title }}
+        </li>
+    {% else %}
+        <li>
+            <a href="{{ menuItem.link }}">{{ menuItem.title }}</a>
+        </li>
+    {% endif %}
+{% endmacro %}
+++++

@@ -1,5 +1,8 @@
 ---
 title: Examples - Social Media
+group1: true
+group2: true
+group3: true
 ---
 
 ### Embed Youtube Video
