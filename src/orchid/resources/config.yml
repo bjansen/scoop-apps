@@ -2,25 +2,13 @@ site:
   about:
     siteName: 'Scoop Apps'
     subtitle: 'Basic starter repo to get going with Orchid quickly'
-    siteDescription: 'Scoop Apps is an online package browser for Scoop,  – the command-line installer for Windows'
+    siteDescription: 'Scoop Apps is an online package browser for Scoop, the command-line installer for Windows'
     avatar: '/assets/media/logo.jpg'
 
 theme:
   social:
     github: 'bjansen/scoop-apps'
   menu:
-    - type: 'page'
-      title: 'Scoop Apps'
-      url: '/'
-    - type: "pages"
-      atRoot: true
-    - type: groupPages
-      collectionType: pages
-      collectionId: allPages
-      groups:
-        - 'group1'
-        - 'group2'
-        - 'group3'
   sidebar:
   extraCss:
     - 'assets/css/extraCss.scss'

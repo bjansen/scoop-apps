@@ -30,3 +30,6 @@ proguard/
 
 # Google Analytics
 /**/templates/meta.twig
+
+# Those pages are generated
+/src/orchid/resources/pages
