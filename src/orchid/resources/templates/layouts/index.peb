@@ -1,0 +1,9 @@
+{% extends 'layouts/layoutBase' %}
+
+{% block baseJumbotron %}
+    <div class="bs-docs-masthead" id="jumbotron">
+        <div class="container">
+            <h1 class="home-title"><a href="/">{{- site.about.siteName -}}</a></h1>
+        </div>
+    </div>
+{% endblock %}

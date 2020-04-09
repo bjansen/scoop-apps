@@ -1,0 +1,12 @@
+<h2>{{ appName }}</h2>
+
+<p>{{ appDescription }}</p>
+<p>🔗 <a href="{{ appUrl }}">{{ appUrl }}</a></p>
+<p>📜 <a href="{{ appManifestUrl }}">App manifest</a></p>
+
+<p><b>Current version: <code>{{ appVersion }}</code></b></p>
+
+<h3>Installation</h3>
+<pre><code>scoop install {{ appName }}</code></pre>
+
+{{ page.content | raw }}

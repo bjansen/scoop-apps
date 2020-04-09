@@ -1,0 +1,17 @@
+[
+  {
+    "name": "main",
+    "url": "https://github.com/ScoopInstaller/Main",
+    "cloneUrl": "xxx"
+  },
+  {
+    "name": "extras",
+    "url": "https://github.com/lukesampson/scoop-extras",
+    "cloneUrl": "xxx"
+  },
+  {
+    "name": "java",
+    "url": "https://github.com/ScoopInstaller/Java",
+    "cloneUrl": "xxx"
+  }
+]

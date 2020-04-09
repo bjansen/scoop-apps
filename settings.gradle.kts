@@ -1,1 +1,1 @@
-rootProject.name = "OrchidStarter"
+rootProject.name = "scoop-apps"

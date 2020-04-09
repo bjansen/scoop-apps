@@ -1,1 +1,60 @@
+h1, .bs-docs-header h1 {
+    color: #FFCC00;
+    font-family: 'OpenSansLight', "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: normal;
+    font-size: 40px;
+}
 
+body {
+    background: linear-gradient(#2a2a29, #1c1c1c);
+    color: rgb(240, 231, 213);
+    font: 16px/1.5 "OpenSansRegular", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+#jumbotron {
+    background: transparent;
+
+    &:after {
+        display: none;
+    }
+
+    padding: 50px 15px;
+}
+
+nav {
+    display: none;
+}
+
+a, a:hover, a:visited {
+    color: #ffcc00;
+    font-weight: 400;
+}
+
+body .github-fork-ribbon.left-top {
+    top: 0;
+}
+
+div [role=complementary] {
+    display: none;
+}
+
+div [role=main] {
+    margin: auto;
+    float: none;
+}
+
+tbody {
+    td {
+        padding: 5px;
+    }
+    tr:nth-child(even) {
+        background-color: #353535;
+    }
+}
+
+pre {
+    background: #191919;
+    color: #efefef;
+    border: 1px solid #121212;
+    border-radius: 2px;
+}

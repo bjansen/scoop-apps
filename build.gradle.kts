@@ -1,4 +1,5 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import com.github.bjansen.scoopapps.ScoopAppsPlugin
 
 // Buildscript dependencies and plugins
 //----------------------------------------------------------------------------------------------------------------------
@@ -19,17 +20,11 @@ dependencies {
     val orchid_version = "0.18.0"
     compile("io.github.javaeden.orchid:OrchidCore:$orchid_version")
     orchidCompile("io.github.javaeden.orchid:OrchidCore:$orchid_version")
-    orchidRuntime("io.github.javaeden.orchid:OrchidPosts:$orchid_version")
     orchidRuntime("io.github.javaeden.orchid:OrchidPages:$orchid_version")
-    orchidRuntime("io.github.javaeden.orchid:OrchidWiki:$orchid_version")
-    orchidRuntime("io.github.javaeden.orchid:OrchidNetlifyCMS:$orchid_version")
-    orchidRuntime("io.github.javaeden.orchid:OrchidPluginDocs:$orchid_version")
     orchidRuntime("io.github.javaeden.orchid:OrchidSearch:$orchid_version")
     orchidRuntime("io.github.javaeden.orchid:OrchidWritersBlocks:$orchid_version")
     orchidRuntime("io.github.javaeden.orchid:OrchidSyntaxHighlighter:$orchid_version")
-    orchidRuntime("io.github.javaeden.orchid:OrchidTaxonomies:$orchid_version")
-    orchidRuntime("io.github.javaeden.orchid:OrchidFutureImperfect:$orchid_version")
-    orchidRuntime("io.github.javaeden.orchid:OrchidAsciidoc:$orchid_version")
+    orchidRuntime("io.github.javaeden.orchid:OrchidBsDoc:$orchid_version")
 }
 
 tasks.withType<KotlinCompile> {
@@ -47,7 +42,7 @@ project.version = "1"
 orchid {
     val isProd = envOrProperty("env") == "prod"
     version = "${project.version}"
-    theme = "FutureImperfect"
+    theme = "BsDoc"
     environment = if (isProd) "production" else "debug"
     baseUrl = when {
         isProd && envOrProperty("PULL_REQUEST") == "true" -> envOrProperty("DEPLOY_URL", required = true)
@@ -55,3 +50,4 @@ orchid {
         else -> "http://localhost:8080"
     }
 }
+apply<ScoopAppsPlugin>()
