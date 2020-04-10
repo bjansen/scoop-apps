@@ -25,6 +25,7 @@ dependencies {
     orchidRuntime("io.github.javaeden.orchid:OrchidWritersBlocks:$orchid_version")
     orchidRuntime("io.github.javaeden.orchid:OrchidSyntaxHighlighter:$orchid_version")
     orchidRuntime("io.github.javaeden.orchid:OrchidBsDoc:$orchid_version")
+    orchidRuntime("io.github.javaeden.orchid:OrchidGithub:$orchid_version")
 }
 
 tasks.withType<KotlinCompile> {
@@ -49,5 +50,6 @@ orchid {
         isProd -> envOrProperty("URL", required = true)
         else -> "http://localhost:8080"
     }
+    githubToken = project.property("githubToken") as String?
 }
 apply<ScoopAppsPlugin>()
