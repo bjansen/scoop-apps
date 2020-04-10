@@ -58,7 +58,7 @@ class ScoopAppsPlugin : org.gradle.api.Plugin<Project> {
                 ---
             """.trimIndent())
 
-            bucketIndexContent.append("""<tr><td><a href="$bucketName/$appName">$appName</a></td><td><code>$appVersion</code></td><td>$appDescription</td>""").append('\n')
+            bucketIndexContent.append("""<tr><td><a href="$appName">$appName</a></td><td><code>$appVersion</code></td><td>$appDescription</td>""").append('\n')
         }
 
         bucketIndexContent.append("</table>")
