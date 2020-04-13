@@ -1,8 +1,6 @@
 package com.github.bjansen.scoopapps
 
-import com.google.gson.JsonArray
-import com.google.gson.JsonObject
-import com.google.gson.JsonParser
+import com.google.gson.*
 import org.gradle.api.GradleException
 import org.gradle.api.Project
 import java.io.File
@@ -46,6 +44,11 @@ class ScoopAppsPlugin : org.gradle.api.Plugin<Project> {
 
             val appVersion = jsonContent["version"].asString
             val appDescription = jsonContent["description"].asString.replace("\"", "\\\"")
+            val license = when (jsonContent["license"]) {
+                is JsonPrimitive -> jsonContent["license"].asString
+                else -> "Unknown"
+            }
+
 
             File(pagesDir, "$appName.md").writeText("""
                 ---
@@ -55,6 +58,9 @@ class ScoopAppsPlugin : org.gradle.api.Plugin<Project> {
                 appManifestUrl: $bucketUrl/tree/master/bucket/$appName.json
                 appUrl: "${jsonContent["homepage"].asString}"
                 appVersion: "$appVersion"
+                bucketName: $bucketName
+                bucketUrl: $bucketUrl
+                license: "$license"
                 ---
             """.trimIndent())
 

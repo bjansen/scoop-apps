@@ -3,8 +3,10 @@ title: Scoop Apps
 layout: index
 ---
 
+<div style="margin-top: 20px; font-size: 22px;">
 <a href="/">Scoop Apps</a> is an online package browser for <a href="https://scoop.sh/">Scoop</a> – the command-line 
 installer for Windows. For more information on how to install and use Scoop see <a href="https://scoop.sh/">its homepage</a>.
+</div>
 
 <h2>Browse buckets</h2>
 

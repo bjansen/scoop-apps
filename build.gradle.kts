@@ -21,10 +21,6 @@ dependencies {
     compile("io.github.javaeden.orchid:OrchidCore:$orchid_version")
     orchidCompile("io.github.javaeden.orchid:OrchidCore:$orchid_version")
     orchidRuntime("io.github.javaeden.orchid:OrchidPages:$orchid_version")
-    orchidRuntime("io.github.javaeden.orchid:OrchidSearch:$orchid_version")
-    orchidRuntime("io.github.javaeden.orchid:OrchidWritersBlocks:$orchid_version")
-    orchidRuntime("io.github.javaeden.orchid:OrchidSyntaxHighlighter:$orchid_version")
-    orchidRuntime("io.github.javaeden.orchid:OrchidBsDoc:$orchid_version")
     orchidRuntime("io.github.javaeden.orchid:OrchidGithub:$orchid_version")
 }
 
@@ -43,7 +39,6 @@ project.version = "0.1"
 orchid {
     val isProd = envOrProperty("env") == "prod"
     version = "${project.version}"
-    theme = "BsDoc"
     environment = if (isProd) "production" else "debug"
     baseUrl = when {
         isProd && envOrProperty("PULL_REQUEST") == "true" -> envOrProperty("DEPLOY_URL", required = true)

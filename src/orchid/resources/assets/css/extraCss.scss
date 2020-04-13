@@ -1,9 +1,4 @@
-h1, .bs-docs-header h1 {
-    color: #FFCC00;
-    font-family: 'OpenSansLight', "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-weight: normal;
-    font-size: 40px;
-}
+@import 'algolia';
 
 body {
     background: linear-gradient(#2a2a29, #1c1c1c);
@@ -11,18 +6,38 @@ body {
     font: 16px/1.5 "OpenSansRegular", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-#jumbotron {
-    background: transparent;
-
-    &:after {
-        display: none;
-    }
-
-    padding: 50px 15px;
+.page-container {
+    width: 1170px;
+    margin: auto;
+    position: relative;
+    min-height: 100vh;
 }
 
-nav {
-    display: none;
+header {
+    text-align: center;
+
+    h1 {
+        line-height: 100px;
+        color: #FFCC00;
+        font-family: 'OpenSansLight', "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-weight: normal;
+        font-size: 40px;
+    }
+
+    border-bottom: 1px solid #444422;
+}
+
+.content-wrap {
+    padding-bottom: 9rem;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    height: 8rem;
+    line-height: 8rem;
+    width: 100%;
+    border-top: 1px solid #444422;
 }
 
 a, a:hover, a:visited {
@@ -30,17 +45,13 @@ a, a:hover, a:visited {
     font-weight: 400;
 }
 
-body .github-fork-ribbon.left-top {
-    top: 0;
-}
-
-div [role=complementary] {
-    display: none;
-}
-
-div [role=main] {
+div [role=main], footer div .col-md-9 {
     margin: auto;
     float: none;
+}
+
+.search-component {
+    margin: 30px auto;
 }
 
 tbody {
@@ -57,4 +68,17 @@ pre {
     color: #efefef;
     border: 1px solid #121212;
     border-radius: 2px;
+}
+
+.algolia-autocomplete {
+    color: #333;
+
+    .app-description {
+        color: #666;
+        font-size: smaller;
+    }
+}
+
+.aa-suggestion {
+    border-bottom: 1px solid #DDD;
 }

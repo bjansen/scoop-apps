@@ -1,7 +1,7 @@
 site:
   about:
     siteName: 'Scoop Apps'
-    subtitle: 'Basic starter repo to get going with Orchid quickly'
+    subtitle: 'A package browser for Scoop apps'
     siteDescription: 'Scoop Apps is an online package browser for Scoop, the command-line installer for Windows'
     avatar: '/assets/media/logo.jpg'
 
@@ -11,9 +11,11 @@ theme:
   menu:
   sidebar:
   extraCss:
+    - 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css'
     - 'assets/css/extraCss.scss'
-    - 'assets/css/pygments.scss'
   extraJs:
+    - 'https://cdn.jsdelivr.net/npm/algoliasearch@4/dist/algoliasearch.umd.min.js'
+    - 'https://cdn.jsdelivr.net/autocomplete.js/0/autocomplete.min.js'
     - 'assets/js/extraJs.js'
   legacySearch: false
 #  metaComponents:

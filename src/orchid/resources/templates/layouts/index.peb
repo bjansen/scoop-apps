@@ -1,9 +1,43 @@
-{% extends 'layouts/layoutBase' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{% head %}
+{% styles %}
+{% block layoutStyles %}{% endblock %}
+<base href="{{ homepageUrl() }}"/>
+</head>
+<body>
+    <div id="top"></div>
+    <div class="page-container">
+        <div class="content-wrap">
+            <header class="row">
+                <h1 class="home-title"><a href="{{ homepageUrl() }}">{{- site.about.siteName -}}</a></h1>
+            </header>
 
-{% block baseJumbotron %}
-    <div class="bs-docs-masthead" id="jumbotron">
-        <div class="container">
-            <h1 class="home-title"><a href="{{ homepageUrl() }}">{{- site.about.siteName -}}</a></h1>
+            {% include 'includes/search' %}
+
+            <div class="row">
+                <div class="col-md-9" role="main">
+                {% block pageContent %}
+                {% endblock %}
+                {% block remainingComponents %}
+                    {% page %}
+                {% endblock %}
+                </div>
+            </div>
         </div>
+
+        <footer>
+            <div class="row">
+                <div class="col-md-9">
+                    See <a href="https://github.com/{{ theme.social.github }}">our GitHub page</a> and
+                    the <a href="https://scoop.sh">Scoop website</a> for more info.
+                    Site made with 💖 and <a href="https://orchid.run">Orchid</a>.
+                </div>
+            </div>
+        </footer>
     </div>
-{% endblock %}
+
+    {% scripts %}
+</body>
+</html>

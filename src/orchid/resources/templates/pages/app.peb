@@ -1,3 +1,19 @@
+{% macro licenseUrl(license) %}
+{% if license is null %}
+Unknown
+{% elseif license == "GPL-2.0-only WITH Classpath-exception-2.0" %}
+<a href="https://openjdk.java.net/legal/gplv2+ce.html">{{ license }}</a>
+{% elseif license == "GPL-2.0-only WITH Classpath-exception-2.0,EPL-2.0" %}
+<a href="https://openjdk.java.net/legal/gplv2+ce.html">GPL-2.0-only WITH Classpath-exception-2.0</a>,
+<a href="https://opensource.org/licenses/EPL-2.0">EPL-2.0</a>
+{% elseif license == "UPL-1.0" %}
+<a href="https://opensource.org/licenses/UPL">{{ license }}</a>
+{% elseif license == "GPL-2.0" %}
+<a href="https://opensource.org/licenses/GPL-2.0">{{ license }}</a>
+{% else %}
+{{ license }} <!-- TODO -->
+{% endif %}
+{% endmacro %}
 <h2>{{ appName }}</h2>
 
 <p>{{ appDescription }}</p>
@@ -5,8 +21,8 @@
 <p>📜 <a href="{{ appManifestUrl }}">App manifest</a></p>
 
 <p><b>Current version: <code>{{ appVersion }}</code></b></p>
+<p><b>Bucket:</b> <a href="{{ bucketUrl }}">{{ bucketName }}</a></p>
+<p><b>License:</b> {{ licenseUrl(license) }}</p>
 
 <h3>Installation</h3>
 <pre><code>scoop install {{ appName }}</code></pre>
-
-{{ page.content | raw }}
