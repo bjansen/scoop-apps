@@ -21,7 +21,7 @@ autocomplete('#query', { debug: true, hint: false }, [
     displayKey: 'name',
     templates: {
       suggestion: function(suggestion) {
-        return '<div><a href="' + suggestion.bucket + '/' + suggestion.name + '">' +
+        return '<div><a href="' + window.site.baseUrl + '/' + suggestion.bucket + '/' + suggestion.name + '">' +
           '<div class="app-name">' + suggestion._highlightResult.name.value + '</div>' +
           '<div class="app-description">' + suggestion._highlightResult.description.value + '</div>' +
           '</a></div>';
@@ -34,5 +34,5 @@ autocomplete('#query', { debug: true, hint: false }, [
     return;
   }
   // Change the page, for example, on other events
-  window.location.assign(suggestion.bucket + '/' + suggestion.name);
+  window.location.assign(window.site.baseUrl + '/' + suggestion.bucket + '/' + suggestion.name);
 });

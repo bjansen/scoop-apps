@@ -4,7 +4,6 @@
 {% head %}
 {% styles %}
 {% block layoutStyles %}{% endblock %}
-<base href="{{ homepageUrl() }}"/>
 </head>
 <body>
     <div id="top"></div>
