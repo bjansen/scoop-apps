@@ -4,8 +4,7 @@ import com.google.gson.JsonObject
 import com.google.gson.JsonPrimitive
 
 class ScoopApp(
-    val bucketName: String,
-    val bucketUrl: String,
+    val bucket: ScoopBucket,
     val appName: String,
     jsonContent: JsonObject
 ) {

@@ -13,7 +13,7 @@ class ScoopAppsPlugin : org.gradle.api.Plugin<Project> {
     override fun apply(target: Project) {
         target.task("scanBuckets") {
             doLast {
-                val knownBuckets: JsonArray = loadKnownBuckets()
+                val knownBuckets = loadKnownBuckets()
                 val apps: List<ScoopApp> = loadApps(knownBuckets)
 
                 generatePages(project, apps)
@@ -24,7 +24,7 @@ class ScoopAppsPlugin : org.gradle.api.Plugin<Project> {
 
     private fun generatePages(project: Project, apps: List<ScoopApp>) {
         // Initialize directory
-        apps.map(ScoopApp::bucketName)
+        apps.map {app -> app.bucket.name}
             .distinct()
             .forEach {
                 val pagesDir = File(project.rootDir, "src/orchid/resources/pages/$it")
@@ -33,25 +33,25 @@ class ScoopAppsPlugin : org.gradle.api.Plugin<Project> {
 
         // Write apps pages
         apps.forEach {
-            val pagesDir = File(project.rootDir, "src/orchid/resources/pages/${it.bucketName}")
+            val pagesDir = File(project.rootDir, "src/orchid/resources/pages/${it.bucket.name}")
 
             File(pagesDir, "${it.appName}.md").writeText("""
                 ---
                 template: app
                 appName: ${it.appName}
                 appDescription: "${it.appDescription}"
-                appManifestUrl: ${it.bucketUrl}/tree/master/bucket/${it.appName}.json
+                appManifestUrl: ${it.bucket.url}/tree/master/bucket/${it.appName}.json
                 appUrl: "${it.homepage}"
                 appVersion: "${it.appVersion}"
-                bucketName: ${it.bucketName}
-                bucketUrl: ${it.bucketUrl}
+                bucketName: ${it.bucket.name}
+                bucketUrl: ${it.bucket.url}
                 license: "${it.license}"
                 ---
             """.trimIndent())
         }
 
         // Write bucket indexes
-        apps.groupBy(ScoopApp::bucketName)
+        apps.groupBy {app -> app.bucket.name}
             .forEach {
                 val bucketName = it.key
                 val bucketIndexContent: StringBuilder = StringBuilder("""
@@ -64,7 +64,7 @@ class ScoopAppsPlugin : org.gradle.api.Plugin<Project> {
                     
                 """.trimIndent())
 
-                apps.filter { app -> app.bucketName == bucketName }
+                apps.filter { app -> app.bucket.name == bucketName }
                     .forEach { app ->
                         bucketIndexContent.append("""<tr><td><a href="${app.appName}">${app.appName}</a></td><td><code>${app.appVersion}</code></td><td>${app.appDescription}</td>""")
                             .append('\n')
@@ -80,7 +80,7 @@ class ScoopAppsPlugin : org.gradle.api.Plugin<Project> {
         val docSearchIndex = StringBuilder("[\n")
 
         apps.forEach {
-            docSearchIndex.append("""{"bucket": "${it.bucketName}", "name": "${it.appName}", "description": "${it.appDescription}"},""").append("\n")
+            docSearchIndex.append("""{"bucket": "${it.bucket.name}", "name": "${it.appName}", "description": "${it.appDescription}"},""").append("\n")
         }
 
         docSearchIndex.delete(docSearchIndex.length - 2, docSearchIndex.length)
@@ -89,25 +89,29 @@ class ScoopAppsPlugin : org.gradle.api.Plugin<Project> {
         File(project.buildDir, "DocSearch-index.json").writeText(docSearchIndex.toString())
     }
 
-    private fun loadApps(knownBuckets: JsonArray): List<ScoopApp> {
+    private fun loadApps(knownBuckets: List<ScoopBucket>): List<ScoopApp> {
         val apps = ArrayList<ScoopApp>()
 
         knownBuckets.forEach {
-            val bucket = it as JsonObject
-            val bucketDir = File(bucket["cloneUrl"].asString, "bucket")
+            val bucket = it
+            val bucketDir = File(bucket.cloneUrl, "bucket")
 
             bucketDir.listFiles()?.forEach { file ->
                 val appName = file.nameWithoutExtension
                 val jsonContent = JsonParser.parseString(file.readText()) as JsonObject
-                apps.add(ScoopApp(bucket["name"].asString, bucket["url"].asString, appName, jsonContent))
+                apps.add(ScoopApp(bucket, appName, jsonContent))
             }
         }
         return apps
     }
 
-    private fun loadKnownBuckets(): JsonArray {
+    private fun loadKnownBuckets(): List<ScoopBucket> {
         val bucketsConf = ScoopAppsPlugin::class.java.getResourceAsStream("/buckets.json")
-        return JsonParser.parseReader(InputStreamReader(bucketsConf)) as JsonArray
+        return (JsonParser.parseReader(InputStreamReader(bucketsConf)) as JsonArray)
+            .map { el ->
+                val bucket = el as JsonObject
+                ScoopBucket(bucket["name"].asString, bucket["url"].asString, bucket["cloneUrl"].asString)
+            }
     }
 
     private fun preparePagesDirectory(pagesDir: File) {
