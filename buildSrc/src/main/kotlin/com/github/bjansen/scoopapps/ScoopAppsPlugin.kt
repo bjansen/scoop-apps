@@ -5,6 +5,8 @@ import com.google.gson.JsonObject
 import com.google.gson.JsonParser
 import org.gradle.api.GradleException
 import org.gradle.api.Project
+import org.gradle.internal.impldep.com.google.common.collect.ArrayListMultimap
+import org.gradle.internal.impldep.com.google.common.collect.Multimap
 import java.io.File
 import java.io.InputStreamReader
 
@@ -14,7 +16,7 @@ class ScoopAppsPlugin : org.gradle.api.Plugin<Project> {
         target.task("scanBuckets") {
             doLast {
                 val knownBuckets = loadKnownBuckets()
-                val apps: List<ScoopApp> = loadApps(knownBuckets)
+                val apps: Multimap<ScoopBucket, ScoopApp> = loadApps(knownBuckets)
 
                 generatePages(project, apps)
                 generateDocSearchIndex(project, apps)
@@ -22,38 +24,38 @@ class ScoopAppsPlugin : org.gradle.api.Plugin<Project> {
         }
     }
 
-    private fun generatePages(project: Project, apps: List<ScoopApp>) {
+    private fun generatePages(project: Project, apps: Multimap<ScoopBucket, ScoopApp>) {
         // Initialize directory
-        apps.map {app -> app.bucket.name}
-            .distinct()
+        apps.keySet()
             .forEach {
-                val pagesDir = File(project.rootDir, "src/orchid/resources/pages/$it")
+                val pagesDir = File(project.rootDir, "src/orchid/resources/pages/${it.name}")
                 preparePagesDirectory(pagesDir)
             }
 
         // Write apps pages
-        apps.forEach {
-            val pagesDir = File(project.rootDir, "src/orchid/resources/pages/${it.bucket.name}")
+        apps.entries().forEach {
+            val bucket = it.key
+            val app = it.value
+            val pagesDir = File(project.rootDir, "src/orchid/resources/pages/${bucket.name}")
 
-            File(pagesDir, "${it.appName}.md").writeText("""
+            File(pagesDir, "${app.appName}.md").writeText("""
                 ---
                 template: app
-                appName: ${it.appName}
-                appDescription: "${it.appDescription}"
-                appManifestUrl: ${it.bucket.url}/tree/master/bucket/${it.appName}.json
-                appUrl: "${it.homepage}"
-                appVersion: "${it.appVersion}"
-                bucketName: ${it.bucket.name}
-                bucketUrl: ${it.bucket.url}
-                license: "${it.license}"
+                appName: ${app.appName}
+                appDescription: "${app.appDescription}"
+                appManifestUrl: ${app.bucket.url}/tree/master/bucket/${app.appName}.json
+                appUrl: "${app.homepage}"
+                appVersion: "${app.appVersion}"
+                bucketName: ${app.bucket.name}
+                bucketUrl: ${app.bucket.url}
+                license: "${app.license}"
                 ---
             """.trimIndent())
         }
 
         // Write bucket indexes
-        apps.groupBy {app -> app.bucket.name}
-            .forEach {
-                val bucketName = it.key
+        apps.keySet().forEach {
+                val bucketName = it.name
                 val bucketIndexContent: StringBuilder = StringBuilder("""
                     ---
                     title: Index of bucket $bucketName - Scoop Apps
@@ -64,7 +66,7 @@ class ScoopAppsPlugin : org.gradle.api.Plugin<Project> {
                     
                 """.trimIndent())
 
-                apps.filter { app -> app.bucket.name == bucketName }
+                apps.get(it)
                     .forEach { app ->
                         bucketIndexContent.append("""<tr><td><a href="${app.appName}">${app.appName}</a></td><td><code>${app.appVersion}</code></td><td>${app.appDescription}</td>""")
                             .append('\n')
@@ -76,10 +78,10 @@ class ScoopAppsPlugin : org.gradle.api.Plugin<Project> {
             }
     }
 
-    private fun generateDocSearchIndex(project: Project, apps: List<ScoopApp>) {
+    private fun generateDocSearchIndex(project: Project, apps: Multimap<ScoopBucket, ScoopApp>) {
         val docSearchIndex = StringBuilder("[\n")
 
-        apps.forEach {
+        apps.values().forEach {
             docSearchIndex.append("""{"bucket": "${it.bucket.name}", "name": "${it.appName}", "description": "${it.appDescription}"},""").append("\n")
         }
 
@@ -89,8 +91,8 @@ class ScoopAppsPlugin : org.gradle.api.Plugin<Project> {
         File(project.buildDir, "DocSearch-index.json").writeText(docSearchIndex.toString())
     }
 
-    private fun loadApps(knownBuckets: List<ScoopBucket>): List<ScoopApp> {
-        val apps = ArrayList<ScoopApp>()
+    private fun loadApps(knownBuckets: List<ScoopBucket>): Multimap<ScoopBucket, ScoopApp> {
+        val apps = ArrayListMultimap.create<ScoopBucket, ScoopApp>()
 
         knownBuckets.forEach {
             val bucket = it
@@ -99,7 +101,7 @@ class ScoopAppsPlugin : org.gradle.api.Plugin<Project> {
             bucketDir.listFiles()?.forEach { file ->
                 val appName = file.nameWithoutExtension
                 val jsonContent = JsonParser.parseString(file.readText()) as JsonObject
-                apps.add(ScoopApp(bucket, appName, jsonContent))
+                apps.put(bucket, ScoopApp(bucket, appName, jsonContent))
             }
         }
         return apps
