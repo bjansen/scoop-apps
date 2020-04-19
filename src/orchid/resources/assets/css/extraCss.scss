@@ -1,21 +1,16 @@
 @import 'algolia';
 
+html, body {
+  min-height: 100vh;
+}
+
 body {
     background: linear-gradient(#2a2a29, #1c1c1c);
     color: rgb(240, 231, 213);
     font: 16px/1.5 "OpenSansRegular", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-.page-container {
-    width: 1170px;
-    margin: auto;
-    position: relative;
-    min-height: 100vh;
-}
-
 header {
-    text-align: center;
-
     h1 {
         line-height: 100px;
         color: #FFCC00;
@@ -23,36 +18,20 @@ header {
         font-weight: normal;
         font-size: 40px;
     }
+}
 
+main {
+    border-top: 1px solid #444422;
     border-bottom: 1px solid #444422;
 }
 
-.content-wrap {
-    padding-bottom: 9rem;
-}
-
 footer {
-    position: absolute;
-    bottom: 0;
     height: 8rem;
-    line-height: 8rem;
-    width: 100%;
-    border-top: 1px solid #444422;
-    text-align: center;
 }
 
 a, a:hover, a:visited {
     color: #ffcc00;
     font-weight: 400;
-}
-
-div [role=main], footer div .col-md-9 {
-    margin: auto;
-    float: none;
-}
-
-.search-component {
-    margin: 30px auto;
 }
 
 tbody {

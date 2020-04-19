@@ -15,7 +15,7 @@ function newHitsSource(index, params) {
   };
 }
 
-autocomplete('#query', { debug: true, hint: false }, [
+autocomplete('#query', { hint: false, appendTo: 'form' }, [
   {
     source: newHitsSource(index, { hitsPerPage: 5 }),
     displayKey: 'name',
