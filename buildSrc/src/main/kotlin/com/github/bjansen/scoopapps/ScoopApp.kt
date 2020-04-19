@@ -10,7 +10,12 @@ class ScoopApp(
 ) {
 
     val appVersion = jsonContent["version"].asString
-    val appDescription = jsonContent["description"].asString.replace("\"", "\\\"")
+    val appDescription = when(jsonContent["description"]) {
+        is JsonPrimitive -> jsonContent["description"].asString
+            .replace("\"", "\\\"")
+            .replace("\n", "\\n")
+        else -> ""
+    }
     val license = when (jsonContent["license"]) {
         is JsonPrimitive -> jsonContent["license"].asString
         else -> "Unknown"

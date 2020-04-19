@@ -1,17 +1,13 @@
 [
-  {
-    "name": "main",
-    "url": "https://github.com/ScoopInstaller/Main",
-    "cloneUrl": "xxx"
-  },
-  {
-    "name": "extras",
-    "url": "https://github.com/lukesampson/scoop-extras",
-    "cloneUrl": "xxx"
-  },
-  {
-    "name": "java",
-    "url": "https://github.com/ScoopInstaller/Java",
-    "cloneUrl": "xxx"
-  }
+  {"name": "main", "url": "https://github.com/ScoopInstaller/Main"},
+  {"name": "extras", "url": "https://github.com/lukesampson/scoop-extras"},
+  {"name": "versions", "url": "https://github.com/ScoopInstaller/Versions"},
+  {"name": "nightlies", "url": "https://github.com/ScoopInstaller/Nightlies"},
+  {"name": "nirsoft", "url": "https://github.com/kodybrown/scoop-nirsoft"},
+  {"name": "php", "url": "https://github.com/ScoopInstaller/PHP"},
+  {"name": "nerd-fonts", "url": "https://github.com/matthewjberger/scoop-nerd-fonts"},
+  {"name": "nonportable", "url": "https://github.com/TheRandomLabs/scoop-nonportable"},
+  {"name": "java", "url": "https://github.com/ScoopInstaller/Java"},
+  {"name": "games", "url": "https://github.com/Calinou/scoop-games"},
+  {"name": "jetbrains", "url": "https://github.com/Ash258/Scoop-JetBrains"}
 ]

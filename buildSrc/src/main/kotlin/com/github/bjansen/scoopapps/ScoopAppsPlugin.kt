@@ -5,21 +5,47 @@ import com.google.gson.JsonObject
 import com.google.gson.JsonParser
 import org.gradle.api.GradleException
 import org.gradle.api.Project
-import org.gradle.internal.impldep.com.google.common.collect.ArrayListMultimap
-import org.gradle.internal.impldep.com.google.common.collect.Multimap
+import com.google.common.collect.ArrayListMultimap
+import com.google.common.collect.Multimap
+import org.eclipse.jgit.api.Git
+import org.slf4j.LoggerFactory
 import java.io.File
 import java.io.InputStreamReader
 
 class ScoopAppsPlugin : org.gradle.api.Plugin<Project> {
 
+    val logger = LoggerFactory.getLogger(ScoopAppsPlugin::class.java)
+
     override fun apply(target: Project) {
         target.task("scanBuckets") {
             doLast {
-                val knownBuckets = loadKnownBuckets()
+                val knownBuckets = loadKnownBuckets(target)
+
+                updateBuckets(knownBuckets)
+
                 val apps: Multimap<ScoopBucket, ScoopApp> = loadApps(knownBuckets)
 
                 generatePages(project, apps)
                 generateDocSearchIndex(project, apps)
+            }
+        }
+    }
+
+    private fun updateBuckets(knownBuckets: List<ScoopBucket>) {
+        knownBuckets.forEach { bucket ->
+            val repository = File(bucket.cloneUrl)
+
+            if (repository.isDirectory) {
+                logger.warn("Updating bucket $bucket")
+                Git.open(repository)
+                    .pull()
+                    .call()
+            } else {
+                logger.warn("Cloning bucket $bucket")
+                Git.cloneRepository()
+                    .setURI(bucket.url)
+                    .setDirectory(repository)
+                    .call()
             }
         }
     }
@@ -107,12 +133,13 @@ class ScoopAppsPlugin : org.gradle.api.Plugin<Project> {
         return apps
     }
 
-    private fun loadKnownBuckets(): List<ScoopBucket> {
+    private fun loadKnownBuckets(target: Project): List<ScoopBucket> {
         val bucketsConf = ScoopAppsPlugin::class.java.getResourceAsStream("/buckets.json")
         return (JsonParser.parseReader(InputStreamReader(bucketsConf)) as JsonArray)
             .map { el ->
                 val bucket = el as JsonObject
-                ScoopBucket(bucket["name"].asString, bucket["url"].asString, bucket["cloneUrl"].asString)
+                val bucketDirectory = "${target.buildDir}/buckets/${bucket["name"].asString}"
+                ScoopBucket(bucket["name"].asString, bucket["url"].asString, bucketDirectory)
             }
     }
 
