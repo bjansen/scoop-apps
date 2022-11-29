@@ -6,7 +6,7 @@ import com.github.bjansen.scoopapps.ScoopAppsPlugin
 
 plugins {
     // Check latest version at https://plugins.gradle.org/plugin/com.eden.orchidPlugin
-    id("com.eden.orchidPlugin") version "0.20.0"
+    id("com.eden.orchidPlugin") version "0.21.1"
     kotlin("jvm") version "1.3.60"
 }
 
@@ -17,7 +17,7 @@ repositories {
 }
 
 dependencies {
-    val orchid_version = "0.20.0"
+    val orchid_version = "0.21.1"
     compile("io.github.javaeden.orchid:OrchidCore:$orchid_version")
     orchidCompile("io.github.javaeden.orchid:OrchidCore:$orchid_version")
     orchidRuntime("io.github.javaeden.orchid:OrchidPages:$orchid_version")
