@@ -1,15 +1,16 @@
 package com.github.bjansen.scoopapps
 
+import com.google.common.collect.ArrayListMultimap
+import com.google.common.collect.Multimap
 import com.google.gson.JsonArray
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
+import org.eclipse.jgit.api.Git
 import org.gradle.api.GradleException
 import org.gradle.api.Project
-import com.google.common.collect.ArrayListMultimap
-import com.google.common.collect.Multimap
-import org.eclipse.jgit.api.Git
 import org.slf4j.LoggerFactory
 import java.io.File
+import java.io.FilenameFilter
 import java.io.InputStreamReader
 
 class ScoopAppsPlugin : org.gradle.api.Plugin<Project> {
@@ -68,8 +69,8 @@ class ScoopAppsPlugin : org.gradle.api.Plugin<Project> {
                 ---
                 template: app
                 appName: ${app.appName}
-                appDescription: "${app.appDescription}"
-                appManifestUrl: ${app.bucket.url}/tree/master/bucket/${app.appName}.json
+                appDescription: "${app.appDescription.replace(Regex("\\\\([^\"])"), "\\\\\\\\$1")}"
+                appManifestUrl: ${app.bucket.url}/tree/${bucket.name}/bucket/${app.appName}.json
                 appUrl: "${app.homepage}"
                 appVersion: "${app.appVersion}"
                 bucketName: ${app.bucket.name}
@@ -123,8 +124,9 @@ class ScoopAppsPlugin : org.gradle.api.Plugin<Project> {
         knownBuckets.forEach {
             val bucket = it
             val bucketDir = File(bucket.cloneUrl, "bucket")
+            val fileFilter = FilenameFilter { _, name -> name.endsWith(".json") }
 
-            bucketDir.listFiles()?.forEach { file ->
+            bucketDir.listFiles(fileFilter)?.forEach { file ->
                 val appName = file.nameWithoutExtension
                 val jsonContent = JsonParser.parseString(file.readText()) as JsonObject
                 apps.put(bucket, ScoopApp(bucket, appName, jsonContent))
