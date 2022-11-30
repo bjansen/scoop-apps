@@ -19,3 +19,19 @@ this project less useful.
 ![List of apps in a given bucket](.github/img/bucket.png)
 
 ![App details](.github/img/app.png)
+
+## Updating the website
+
+```bash
+# Update buckets and applications metadata
+./gradlew scanBuckets
+
+# Regenerate website from updated metadata
+./gradlew -Penv=prod -PURL=https://bjansen.github.io/scoop-apps/ orchidBuild
+
+# Push to GitHub Pages
+./gradlew -Penv=prod -PURL=https://bjansen.github.io/scoop-apps/ orchidDeploy
+
+# Update Algolia index (for the search bar)
+./gradlew updateAlgolia
+```

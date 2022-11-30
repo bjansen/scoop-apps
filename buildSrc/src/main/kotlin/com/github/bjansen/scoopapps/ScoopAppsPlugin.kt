@@ -1,17 +1,26 @@
 package com.github.bjansen.scoopapps
 
+import com.algolia.search.client.ClientSearch
+import com.algolia.search.model.APIKey
+import com.algolia.search.model.ApplicationID
+import com.algolia.search.model.IndexName
 import com.google.common.collect.ArrayListMultimap
 import com.google.common.collect.Multimap
 import com.google.gson.JsonArray
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
+import kotlinx.coroutines.runBlocking
+import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.decodeFromStream
 import org.eclipse.jgit.api.Git
 import org.gradle.api.GradleException
 import org.gradle.api.Project
 import org.slf4j.LoggerFactory
 import java.io.File
+import java.io.FileInputStream
 import java.io.FilenameFilter
 import java.io.InputStreamReader
+import java.nio.charset.StandardCharsets
 
 class ScoopAppsPlugin : org.gradle.api.Plugin<Project> {
 
@@ -28,6 +37,11 @@ class ScoopAppsPlugin : org.gradle.api.Plugin<Project> {
 
                 generatePages(project, apps)
                 generateDocSearchIndex(project, apps)
+            }
+        }
+        target.task("updateAlgolia") {
+            doLast {
+                updateAlgoliaIndex(project)
             }
         }
     }
@@ -109,13 +123,30 @@ class ScoopAppsPlugin : org.gradle.api.Plugin<Project> {
         val docSearchIndex = StringBuilder("[\n")
 
         apps.values().forEach {
-            docSearchIndex.append("""{"bucket": "${it.bucket.name}", "name": "${it.appName}", "description": "${it.appDescription}"},""").append("\n")
+            docSearchIndex.append("""{"bucket": "${it.bucket.name}", "name": "${it.appName}", "description": "${it.appDescription.replace(Regex("\\\\([^\"])"), "\\\\\\\\$1")}"},""").append("\n")
         }
 
         docSearchIndex.delete(docSearchIndex.length - 2, docSearchIndex.length)
         docSearchIndex.append("\n]")
         project.buildDir.mkdirs()
         File(project.buildDir, "DocSearch-index.json").writeText(docSearchIndex.toString())
+    }
+
+    private fun updateAlgoliaIndex(project: Project) {
+        // API keys below contain actual values tied to your Algolia account
+        val client = ClientSearch(
+            applicationID = ApplicationID(project.property("algoliaApplicationId").toString()),
+            apiKey = APIKey(project.property("algoliaAdminApiKey").toString())
+        )
+        val indexName = IndexName("prod_ScoopApps")
+        val index = client.initIndex(indexName)
+
+        val json = Json.parseToJsonElement(File(project.buildDir, "DocSearch-index.json").readText(StandardCharsets.UTF_8))
+        var list = (json as kotlinx.serialization.json.JsonArray).map { it -> it as kotlinx.serialization.json.JsonObject }.toList()
+
+        runBlocking {
+            index.replaceAllObjects(list)
+        }
     }
 
     private fun loadApps(knownBuckets: List<ScoopBucket>): Multimap<ScoopBucket, ScoopApp> {
