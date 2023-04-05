@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sitemapindex
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/siteindex.xsd"
+    xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <sitemap>
+        <loc>https://bjansen.github.io/scoop-apps/sitemap-assets.xml</loc>
+        <lastmod>2023-04-05</lastmod>
+    </sitemap>
+    <sitemap>
+        <loc>https://bjansen.github.io/scoop-apps/sitemap-external.xml</loc>
+        <lastmod>2023-04-05</lastmod>
+    </sitemap>
+    <sitemap>
+        <loc>https://bjansen.github.io/scoop-apps/sitemap-changelog.xml</loc>
+        <lastmod>2023-04-05</lastmod>
+    </sitemap>
+    <sitemap>
+        <loc>https://bjansen.github.io/scoop-apps/sitemap-home.xml</loc>
+        <lastmod>2023-04-05</lastmod>
+    </sitemap>
+    <sitemap>
+        <loc>https://bjansen.github.io/scoop-apps/sitemap-pages.xml</loc>
+        <lastmod>2023-04-05</lastmod>
+    </sitemap>
+    <sitemap>
+        <loc>https://bjansen.github.io/scoop-apps/sitemap-wiki.xml</loc>
+        <lastmod>2023-04-05</lastmod>
+    </sitemap>
+    <sitemap>
+        <loc>https://bjansen.github.io/scoop-apps/sitemap-sitemap.xml</loc>
+        <lastmod>2023-04-05</lastmod>
+    </sitemap>
+</sitemapindex>

@@ -1,0 +1,8 @@
+User-agent: *
+
+Disallow: /meta/
+
+
+
+Sitemap: https://bjansen.github.io/scoop-apps/sitemap.xml
+
